@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './styles/app.scss';
+
+import './sass/app.scss';
 import Hello from './components/hello/Hello.jsx';
 
 class App extends React.Component {
@@ -12,7 +13,7 @@ class App extends React.Component {
   render() {
     return (
       <div id="container">
-        <Hello message="Hello, world!" />
+        <Hello message="Hello, World!" />
       </div>
     );
   }

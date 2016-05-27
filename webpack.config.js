@@ -28,12 +28,7 @@ module.exports = {
     loaders: [
       {
         test: /\.scss$/,
-        include: __dirname + '/src/styles',
-        loaders: [
-          'style',
-          'css',
-          'sass?outputStyle=expanded'
-        ]
+        loader: ExtractTextPlugin.extract('style', 'css!sass')
       }, {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
@@ -45,9 +40,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin('public/style.css', {
-      allChunks: true
-    })
+    new ExtractTextPlugin('styles.css')
   ],
   devServer: {
     hot: true,
