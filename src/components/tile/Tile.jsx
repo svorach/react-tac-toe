@@ -2,7 +2,7 @@ import React from 'react';
 
 const Tile = ({ tile }) => (
   <div className="tile">
-    {tile.player || 'yo'}
+    <div className="player">{tile.player || 'yo'}</div>
   </div>
 );
 

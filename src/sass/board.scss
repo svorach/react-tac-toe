@@ -1,0 +1,31 @@
+.board {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  justify-content: center;
+  margin: auto;
+  position: fixed;
+  width: 400px;
+}
+
+.row {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+}
+
+.tile {
+  align-items: center;
+  display: flex;
+  background: rgba(255,255,255,0.25);
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px;
+  padding: auto;
+  text-align: center;
+}
+
+.player {
+
+}
