@@ -1,0 +1,40 @@
+.tile {
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  background: linear-gradient(0deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.45) 100%);
+  flex: 1;
+  justify-content: center;
+  margin: 10px;
+  outline: none;
+  padding: auto;
+  text-align: center;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.25);
+
+  &[disabled] {
+    cursor: not-allowed;
+  }
+
+  &.flip {
+    background: rgba(255,255,255,0.75);
+    background: linear-gradient(-140deg, #DCAAAA 0%, #BF79B7 50%, #7B68C8 100%);
+    opacity: 0.75;
+  }
+}
+
+.claim {
+  color: rgba(0,0,0,0.75);
+  flex: 1;
+  font-weight: 300;
+  font-size: 12em;
+  font-size: 12vh;
+  text-shadow: -1px 1px 1px rgba(0,0,0,0.25);
+  text-transform: uppercase;
+}
+
+@media (max-width: 800px) {
+  .claim {
+    font-size: 12vw;
+  }
+}

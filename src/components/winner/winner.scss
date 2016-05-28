@@ -1,0 +1,36 @@
+.winner {
+  background: rgba(0,0,0,0.75);
+  color: #fff;
+  height: 100%;
+  position: absolute;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.75);
+  width: 100%;
+  z-index: 1;
+}
+
+.winner-wrapper {
+  padding: 40px;
+}
+
+.reset {
+  color: #fff;
+  display: inline-block;
+  font-weight: 300;
+  font-size: 2em;
+  font-size: 5vh;
+  text-shadow: -1px 1px 1px rgba(0,0,0,0.25);
+  margin: 10vh 0;
+  text-align: center;
+  text-decoration: none;
+
+  &:hover {
+    border-bottom: 0.1em solid #fff;
+  }
+}
+
+@media (max-width: 800px) {
+  .reset {
+    font-size: 5vw;
+    margin: 10vw 0;
+  }
+}

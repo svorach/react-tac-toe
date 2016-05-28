@@ -1,13 +1,11 @@
-html {
-	height: 100%;
-}
+@import 'animations';
 
-body {
+html {
 	background: linear-gradient(160deg, #0ebfac 0%, #3c7ff5 30%, #5f44e8 75%);
   background-repeat: no-repeat;
-  background-size: stretch;
+  background-size: cover;
 	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
-	padding: 40px 80px;
+	min-height: 100%;
 }
 
 h1 {
@@ -15,4 +13,21 @@ h1 {
 	text-shadow: 0 1px 1px rgba(0,0,0,0.25);
 	font-weight: 300;
 	font-size: 2.4em;
+	font-size: 10vh;
+	margin: 0;
+}
+
+p {
+	font-size: 5vh;
+}
+
+
+@media (max-width: 800px) {
+	h1 {
+		font-size: 10vw;
+	}
+
+	p {
+		font-size: 5vw;
+	}
 }
