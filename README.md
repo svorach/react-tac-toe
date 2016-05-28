@@ -1,10 +1,7 @@
-# react-redux-webpack-starter #
-
-### What is this repository for? ###
-* This is a boilerplate starter pack to assist in getting started quicker with React and Redux.
-* I've created this to suit my needs, but I hope it can help others as well. Thanks to various resources online I've come up with a boilerplate starter pack to suit my front-end needs. Will add links to some various webpack articles and resources I used in creating this.
+# react-tac-toe #
 
 ### How do I get set up? ###
+
 If you do not have webpack and webpack-dev-server set up, please run:
 
     npm i webpack webpack-dev-server -g

@@ -45,9 +45,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/svorach/react-redux-webpack-starter.git"
+    "url": "git+https://github.com/svorach/react-tac-toe.git"
   },
   "author": "Shane Vorachek",
   "license": "ISC",
-  "homepage": "https://github.com/svorach/react-redux-webpack-starter#readme"
+  "homepage": "https://github.com/svorach/react-tac-toe#readme"
 }
