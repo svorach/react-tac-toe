@@ -51,6 +51,10 @@ class TicTacToe extends React.Component {
     };
   }
 
+  checkForWinner() {
+    console.log(this.state.board);
+  }
+
   move(event) {
     const [x, y] = event.target.dataset.coords.split(',');
 
@@ -62,6 +66,54 @@ class TicTacToe extends React.Component {
     });
 
     store.dispatch({ type: 'SWITCH_PLAYER' });
+
+    function checkForWinner() {
+      const board = store.getState().board;
+
+      function contentsAreTheSame(winConditionArray) {
+        return !winConditionArray.some((val, i, arr) => {
+          return val !== arr[0];
+        });
+      }
+
+      function checkForVerticalWin() {
+        function checkColumn(columnIndex) {
+          let columnContents = [];
+
+          for (let row in board) {
+            let tile = board[row][columnIndex];
+            columnContents.push(tile.player);
+          }
+
+          return contentsAreTheSame(columnContents);
+        }
+
+        for (let col = 0; col < board.length; col++) {
+          return checkColumn(col);
+        }
+      }
+
+      function checkForHorizontalWin() {
+        function checkRow(rowIndex) {
+          let rowContents = [];
+
+          for (let row in board[rowIndex]) {
+            let tile = board[rowIndex][row];
+            rowContents.push(tile.player);
+          }
+
+          return contentsAreTheSame(rowContents);
+        }
+      
+        for (let col = 0; col < board.length; col++) {
+          return checkRow(col);
+        }
+      }
+
+      console.log(checkForHorizontalWin() || checkForVerticalWin());
+    }
+
+    checkForWinner();
   }
 
   render() {
