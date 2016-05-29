@@ -5,12 +5,26 @@ import { createStore, combineReducers } from 'redux';
 import './sass/app.scss';
 import Board from './components/board/Board.jsx';
 
-function Matrix() {
+function BoardMatrix(size = 3) {
+  const board = [];
+
+  for (let rowIndex = 0; rowIndex < size; rowIndex ++) {
+    const row = [];
+
+    for (let colIndex = 0; colIndex < size; colIndex++) {
+      row.push('');
+    }
+
+    board.push(row);
+  }
+
   this.matrix = [
     ['', '', ''],
     ['', '', ''],
     ['', '', ''],
   ];
+
+  return board;
 }
 
 const player = (state = 'o', action) => {
@@ -22,7 +36,7 @@ const player = (state = 'o', action) => {
   }
 };
 
-const board = (state = new Matrix().matrix, action) => {
+const board = (state = new BoardMatrix(3), action) => {
   const newState = state.slice();
 
   switch (action.type) {
