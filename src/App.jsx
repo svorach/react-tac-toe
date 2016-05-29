@@ -18,12 +18,6 @@ function BoardMatrix(size = 3) {
     board.push(row);
   }
 
-  this.matrix = [
-    ['', '', ''],
-    ['', '', ''],
-    ['', '', ''],
-  ];
-
   return board;
 }
 
