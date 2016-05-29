@@ -15,19 +15,26 @@
 
 .tile {
   align-items: center;
+  border: none;
+  cursor: pointer;
   display: flex;
   background: rgba(255,255,255,0.15);
   flex: 1;
   flex-direction: column;
   justify-content: center;
   margin: 10px;
+  outline: none;
   padding: auto;
   text-align: center;
+
+  &[disabled] {
+    cursor: not-allowed;
+  }
 }
 
 .player {
   color: #fff;
   font-weight: 900;
   font-size: 12em;
-  text-shadow: 0 2px 2px rgba(0,0,0,.5);
+  text-shadow: 0 4px 0 rgba(0,0,0,.5);
 }
