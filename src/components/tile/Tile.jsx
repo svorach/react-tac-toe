@@ -12,14 +12,14 @@ const Tile = ({ tile, index, rowIndex, move }) => {
   return (
     <button {...opts}>
       <div className="player">
-        {tile.player}
+        {tile}
       </div>
     </button>
   );
 };
 
 Tile.propTypes = {
-  tile: React.PropTypes.object.isRequired,
+  tile: React.PropTypes.string.isRequired,
   index: React.PropTypes.number.isRequired,
   rowIndex: React.PropTypes.number.isRequired,
   move: React.PropTypes.func.isRequired,

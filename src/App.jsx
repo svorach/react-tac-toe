@@ -5,11 +5,13 @@ import { createStore, combineReducers } from 'redux';
 import './sass/app.scss';
 import Board from './components/board/Board.jsx';
 
-const matrix = [
-  [{}, {}, {}],
-  [{}, {}, {}],
-  [{}, {}, {}],
-];
+function Matrix() {
+  this.matrix = [
+    ['', '', ''],
+    ['', '', ''],
+    ['', '', ''],
+  ];
+};
 
 const player = (state = 'o', action) => {
   switch (action.type) {
@@ -20,12 +22,12 @@ const player = (state = 'o', action) => {
   }
 };
 
-const board = (state = matrix, action) => {
+const board = (state = new Matrix().matrix, action) => {
   const newState = state.slice();
 
   switch (action.type) {
     case 'MOVE':
-      newState[action.x][action.y].player = action.player;
+      newState[action.x][action.y] = action.player;
       return newState;
     case 'INIT':
     default:
@@ -34,12 +36,17 @@ const board = (state = matrix, action) => {
 };
 
 
-const ticTacToeReducer = combineReducers({
-  board,
-  player,
-});
+const ticTacToeReducer = combineReducers({ board, player, });
 
-const store = createStore(ticTacToeReducer);
+const rootReducer = (state, action) => {
+  if (action.type === 'RESET') {
+    state = undefined;
+  }
+
+  return ticTacToeReducer(state, action)
+}
+
+const store = createStore(rootReducer);
 
 class TicTacToe extends React.Component {
   constructor(props) {
@@ -82,10 +89,12 @@ class TicTacToe extends React.Component {
 
           for (let row in board) {
             let tile = board[row][columnIndex];
-            columnContents.push(tile.player);
+            columnContents.push(tile);
           }
 
-          return contentsAreTheSame(columnContents);
+          if (columnContents.length === board.length) {
+            return contentsAreTheSame(columnContents);
+          }
         }
 
         for (let col = 0; col < board.length; col++) {
@@ -99,12 +108,13 @@ class TicTacToe extends React.Component {
 
           for (let row in board[rowIndex]) {
             let tile = board[rowIndex][row];
-            rowContents.push(tile.player);
+            rowContents.push(tile);
           }
-
-          return contentsAreTheSame(rowContents);
+          if (rowContents.length === board.length) {
+            return contentsAreTheSame(rowContents);
+          }
         }
-      
+
         for (let col = 0; col < board.length; col++) {
           return checkRow(col);
         }
@@ -116,10 +126,17 @@ class TicTacToe extends React.Component {
     checkForWinner();
   }
 
+  reset(event) {
+    event.preventDefault();
+    store.dispatch({ type: 'RESET' });
+  }
+
   render() {
+    console.log(store.getState())
     return (
       <div id="container">
-        <Board board={this.state.board} player={this.state.player} move={this.move} />
+        <Board {...store.getState()} move={this.move} />
+        <a href="" className="reset" onClick={this.reset}>Reset Game</a>
       </div>
     );
   }
