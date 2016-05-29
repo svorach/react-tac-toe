@@ -1,11 +1,10 @@
 .board {
   display: flex;
   flex-direction: column;
-  height: 400px;
+  height: 800px;
   justify-content: center;
   margin: auto;
-  position: fixed;
-  width: 400px;
+  width: 800px;
 }
 
 .row {
@@ -17,7 +16,7 @@
 .tile {
   align-items: center;
   display: flex;
-  background: rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.15);
   flex: 1;
   flex-direction: column;
   justify-content: center;
@@ -27,5 +26,8 @@
 }
 
 .player {
-
+  color: #fff;
+  font-weight: 900;
+  font-size: 12em;
+  text-shadow: 0 2px 2px rgba(0,0,0,.5);
 }

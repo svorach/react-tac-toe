@@ -1,12 +1,15 @@
+/*
 html {
 	height: 100%;
 }
+*/
 
-body {
+html {
 	background: linear-gradient(160deg, #0ebfac 0%, #3c7ff5 30%, #5f44e8 75%);
   background-repeat: no-repeat;
-  background-size: stretch;
+  background-size: cover;
 	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+	min-height: 100%;
 	padding: 40px 80px;
 }
 
