@@ -4,10 +4,8 @@ import Row from '../row/Row.jsx';
 import '../../sass/board.scss';
 
 const Board = ({ board, move }) => {
-  let row;
-
   const boardRows = board.map(
-    (boardRow, i) => <Row key={i} row={boardRow} index={i} ref={node => row = node} move={move} />
+    (boardRow, i) => <Row key={i} row={boardRow} index={i} move={move} />
   );
 
   return (

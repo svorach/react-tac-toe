@@ -2,11 +2,11 @@ import React from 'react';
 
 const Tile = ({ tile, index, rowIndex, move }) => {
   const opts = {
-    'disabled': typeof tile.player !== 'undefined',
-    'data-coords': rowIndex + ',' + index,
-    'className': 'tile',
-    'href': '',
-    'onClick': move
+    disabled: typeof tile.player !== 'undefined',
+    'data-coords': `${rowIndex},${index}`,
+    className: 'tile',
+    href: '',
+    onClick: move,
   };
 
   return (

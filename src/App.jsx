@@ -14,18 +14,19 @@ const matrix = [
 const player = (state = 'o', action) => {
   switch (action.type) {
     case 'SWITCH_PLAYER':
-      state = (state === 'x') ? 'o' : 'x';
-      return state;
+      return (state === 'x') ? 'o' : 'x';
     default:
       return state;
   }
 };
 
 const board = (state = matrix, action) => {
+  const newState = state.slice();
+
   switch (action.type) {
     case 'MOVE':
-      state[action.x][action.y].player = action.player;
-      return state;
+      newState[action.x][action.y].player = action.player;
+      return newState;
     case 'INIT':
     default:
       return state;
@@ -50,10 +51,16 @@ class TicTacToe extends React.Component {
     };
   }
 
-  move(e, item) {
-    const [x, y] = e.target.dataset.coords.split(',');
+  move(event) {
+    const [x, y] = event.target.dataset.coords.split(',');
 
-    store.dispatch({ type: 'MOVE', x: parseInt(x, 10), y: parseInt(y, 10), player: store.getState().player });
+    store.dispatch({
+      type: 'MOVE',
+      x: parseInt(x, 10),
+      y: parseInt(y, 10),
+      player: store.getState().player,
+    });
+
     store.dispatch({ type: 'SWITCH_PLAYER' });
   }
 
