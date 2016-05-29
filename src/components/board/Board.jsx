@@ -9,7 +9,7 @@ const Board = ({ board, move }) => {
   );
 
   return (
-    <div className="board">
+    <div className="board animated swoop-down-dramatic">
       {boardRows}
     </div>
   );

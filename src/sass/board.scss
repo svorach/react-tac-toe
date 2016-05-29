@@ -18,7 +18,7 @@
   border: none;
   cursor: pointer;
   display: flex;
-  background: rgba(255,255,255,0.15);
+  background: linear-gradient(0deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.15) 100%);
   flex: 1;
   flex-direction: column;
   justify-content: center;
@@ -32,9 +32,10 @@
   }
 }
 
-.player {
-  color: #fff;
-  font-weight: 900;
+.claim {
+  color: rgba(0,0,0,0.75);
+  font-weight: 300;
   font-size: 12em;
-  text-shadow: 0 4px 0 rgba(0,0,0,.5);
+  text-shadow: -1px 1px 1px rgba(0,0,0,0.25);
+  text-transform: uppercase;
 }

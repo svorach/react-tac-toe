@@ -1,0 +1,45 @@
+$short: 0.5s;
+$dramatic: 1s;
+
+
+.animated {
+  transition: all $short cubic-bezier(0,0,3,0);
+}
+
+@keyframes swoop-in {
+  0% {
+    opacity: 0;
+    font-size: 0;
+    transform: translateX(100px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.swoop-in {
+  animation: swoop-in $short;
+}
+
+@keyframes swoop-down {
+  0% {
+    opacity: 0;
+    font-size: 0;
+    transform: translateY(-100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.swoop-down {
+  animation: swoop-down $short;
+}
+
+.swoop-down-dramatic {
+  animation: swoop-down $dramatic;
+}

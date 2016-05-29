@@ -4,6 +4,8 @@ html {
 }
 */
 
+@import 'animations';
+
 html {
 	background: linear-gradient(160deg, #0ebfac 0%, #3c7ff5 30%, #5f44e8 75%);
   background-repeat: no-repeat;
@@ -20,13 +22,22 @@ h1 {
 	font-size: 2.4em;
 }
 
+footer {
+	text-align: center;
+}
+
 .reset {
-	color: #fff;
-	display: block;
-	font-size: 2em;
-	font-weight: 300;
-	padding: 40px 0;
+	color: rgba(0,0,0,0.75);
+	display: inline-block;
+  font-weight: 300;
+  font-size: 2em;
+  text-shadow: -1px 1px 1px rgba(0,0,0,0.25);
+	margin: 40px auto;
 	text-align: center;
 	text-decoration: none;
-	text-shadow: 0 1px 1px rgba(0,0,0,0.25);
+
+	&:hover {
+		border-bottom: 0.1em solid rgba(0,0,0,0.75);
+	}
 }
+

@@ -3,7 +3,7 @@ import Tile from '../tile/Tile.jsx';
 
 const Row = ({ row, index, move }) => {
   const mappedRows = row.map(
-    (tile, i) => <Tile key={i} tile={tile} rowIndex={index} index={i} move={move} />
+    (claim, i) => <Tile key={i} claim={claim} rowIndex={index} index={i} move={move} />
   );
 
   return (

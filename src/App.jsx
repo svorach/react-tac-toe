@@ -11,7 +11,7 @@ function Matrix() {
     ['', '', ''],
     ['', '', ''],
   ];
-};
+}
 
 const player = (state = 'o', action) => {
   switch (action.type) {
@@ -36,15 +36,19 @@ const board = (state = new Matrix().matrix, action) => {
 };
 
 
-const ticTacToeReducer = combineReducers({ board, player, });
+const ticTacToeReducer = combineReducers({ board, player });
 
 const rootReducer = (state, action) => {
+  let newState;
+
   if (action.type === 'RESET') {
-    state = undefined;
+    newState = undefined;
+  } else {
+    newState = state;
   }
 
-  return ticTacToeReducer(state, action)
-}
+  return ticTacToeReducer(newState, action);
+};
 
 const store = createStore(rootReducer);
 
@@ -58,10 +62,6 @@ class TicTacToe extends React.Component {
     };
   }
 
-  checkForWinner() {
-    console.log(this.state.board);
-  }
-
   move(event) {
     const [x, y] = event.target.dataset.coords.split(',');
 
@@ -73,57 +73,6 @@ class TicTacToe extends React.Component {
     });
 
     store.dispatch({ type: 'SWITCH_PLAYER' });
-
-    function checkForWinner() {
-      const board = store.getState().board;
-
-      function contentsAreTheSame(winConditionArray) {
-        return !winConditionArray.some((val, i, arr) => {
-          return val !== arr[0];
-        });
-      }
-
-      function checkForVerticalWin() {
-        function checkColumn(columnIndex) {
-          let columnContents = [];
-
-          for (let row in board) {
-            let tile = board[row][columnIndex];
-            columnContents.push(tile);
-          }
-
-          if (columnContents.length === board.length) {
-            return contentsAreTheSame(columnContents);
-          }
-        }
-
-        for (let col = 0; col < board.length; col++) {
-          return checkColumn(col);
-        }
-      }
-
-      function checkForHorizontalWin() {
-        function checkRow(rowIndex) {
-          let rowContents = [];
-
-          for (let row in board[rowIndex]) {
-            let tile = board[rowIndex][row];
-            rowContents.push(tile);
-          }
-          if (rowContents.length === board.length) {
-            return contentsAreTheSame(rowContents);
-          }
-        }
-
-        for (let col = 0; col < board.length; col++) {
-          return checkRow(col);
-        }
-      }
-
-      console.log(checkForHorizontalWin() || checkForVerticalWin());
-    }
-
-    checkForWinner();
   }
 
   reset(event) {
@@ -132,11 +81,12 @@ class TicTacToe extends React.Component {
   }
 
   render() {
-    console.log(store.getState())
     return (
       <div id="container">
         <Board {...store.getState()} move={this.move} />
-        <a href="" className="reset" onClick={this.reset}>Reset Game</a>
+        <footer>
+          <a href="" className="reset" onClick={this.reset}>reset</a>
+        </footer>
       </div>
     );
   }

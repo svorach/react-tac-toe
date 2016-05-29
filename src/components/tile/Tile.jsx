@@ -1,25 +1,23 @@
 import React from 'react';
 
-const Tile = ({ tile, index, rowIndex, move }) => {
+const Tile = ({ claim, index, rowIndex, move }) => {
   const opts = {
-    disabled: typeof tile.player !== 'undefined',
+    disabled: claim !== '',
     'data-coords': `${rowIndex},${index}`,
-    className: 'tile',
+    className: 'tile animated swoop-in',
     href: '',
     onClick: move,
   };
 
   return (
     <button {...opts}>
-      <div className="player">
-        {tile}
-      </div>
+      {(claim) ? <span className="claim animated swoop-in">{claim}</span> : ''}
     </button>
   );
 };
 
 Tile.propTypes = {
-  tile: React.PropTypes.string.isRequired,
+  claim: React.PropTypes.string.isRequired,
   index: React.PropTypes.number.isRequired,
   rowIndex: React.PropTypes.number.isRequired,
   move: React.PropTypes.func.isRequired,
