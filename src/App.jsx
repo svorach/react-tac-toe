@@ -30,7 +30,7 @@ const player = (state = 'o', action) => {
   }
 };
 
-const board = (state = new BoardMatrix(3), action) => {
+const board = (state = new BoardMatrix(), action) => {
   const newState = state.slice();
 
   switch (action.type) {
