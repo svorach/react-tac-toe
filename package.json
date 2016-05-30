@@ -29,6 +29,7 @@
     "webpack": "^1.12.12"
   },
   "devDependencies": {
+    "babel-register": "^6.9.0",
     "chai": "^3.5.0",
     "enzyme": "^2.2.0",
     "eslint": "^2.9.0",
