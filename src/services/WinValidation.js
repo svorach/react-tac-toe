@@ -24,10 +24,17 @@ class WinValidation {
     return false;
   }
 
-  isDiagonalWin() {
+  isDiagonalWin(matrix) {
+    const { downward, upward } = this.getDiagonals(matrix);
+
+    return this.equalContents(downward) || this.equalContents(upward) || false;
   }
 
   equalContents(array) {
+    if (!array.length) {
+      return false;
+    }
+
     const val = array[0];
 
     for (let i = 0; i < array.length; i ++) {
@@ -38,7 +45,7 @@ class WinValidation {
 
     this.winner = val;
 
-    return true;
+    return (true);
   }
 
   getColumn(matrix, columnIndex) {
@@ -49,6 +56,23 @@ class WinValidation {
     }
 
     return col;
+  }
+
+  getDiagonals(matrix) {
+    const matrixLength = matrix[0].length;
+
+    let downward = [];
+    let upward = [];
+
+    for (let i = 0; i < matrixLength; i ++) {
+      downward.push(matrix[i][i]);
+    }
+
+    for (let x = matrixLength - 1, y = 0; x > -1; x --, y ++) {
+      upward.push(matrix[y][x]);
+    }
+
+    return { downward, upward };
   }
 }
 

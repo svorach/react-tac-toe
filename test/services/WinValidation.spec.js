@@ -15,6 +15,10 @@ describe('Win Validation', function() {
       expect(typeof validation.equalContents).to.equal('function');
     });
 
+    it('should return false if an empty array is passed in', function() {
+      expect(validation.equalContents([])).to.equal(false);
+    });
+
     it('should return true if all contents in an array are the same', function() {
       const test = ['o', 'o', 'o'];
       const intTest = [0, 0, 0, 0];
@@ -51,6 +55,27 @@ describe('Win Validation', function() {
       expect(validation.getColumn(matrix, 0)).to.deep.equal(['x', 'x', 'x']);
       expect(validation.getColumn(matrix, 1)).to.deep.equal(['o', 'x', 'x']);
       expect(validation.getColumn(matrix, 2)).to.deep.equal(['x', 'o', 'o']);
+    });
+  });
+
+  describe('getDiagonals', function() {
+    it('should be a function', function() {
+      expect(typeof validation.getDiagonals).to.equal('function');
+    });
+
+    it('should return an object with downward and upward arrays extracted from a matrix', function() {
+      const matrix = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9],
+      ];
+
+      expect(typeof validation.getDiagonals(matrix)).to.equal('object');
+
+      const { downward, upward } = validation.getDiagonals(matrix);
+
+      expect(downward).to.include.members([1, 5, 9]);
+      expect(upward).to.include.members([7, 5, 3]);
     });
   });
 
@@ -166,12 +191,74 @@ describe('Win Validation', function() {
           ['x', 'o', 'x', 'o', 'o', 'x'],
           ['o', 'o', 'o', 'o', 'x', 'x'],
           ['x', 'x', 'o', 'o', 'o', 'o'],
-          ['x', 'x', 'o', 'o', '', ''],
+          ['x', 'x', 'o', 'o', 'o', 'x'],
           ['x', 'x', 'o', 'o', '', ''],
           ['x', 'x', 'x', 'o', 'x', 'x'],
         ];
 
         expect(validation.isVerticalWin(anyCol)).to.equal(true);
+      });
+    });
+  });
+
+  describe('isDiagnolWin', function() {
+    it('should be a function', function() {
+      expect(typeof validation.isDiagonalWin).to.equal('function');
+    });
+
+    it('should return false if no diagonal win is present', function() {
+      const noVerticalWin = [
+        ['x', 'o', 'x'],
+        ['o', 'o', 'o'],
+        ['x', 'x', 'o'],
+      ];
+
+      expect(validation.isDiagonalWin(noVerticalWin)).to.equal(false);
+    });
+
+    describe('should return true if a diagonal win is present in a', function() {
+      it('3x3 matrix with a downward diagnol', function() {
+        const downward = [
+          ['x', 'o', 'x'],
+          ['o', 'x', 'o'],
+          ['o', 'o', 'x'],
+        ];
+
+        expect(validation.isDiagonalWin(downward)).to.equal(true);
+      });
+
+      it('3x3 matrix with an upward diagnol', function() {
+        const upward = [
+          ['x', 'o', 'x'],
+          ['o', 'x', 'o'],
+          ['x', 'o', 'x'],
+        ];
+
+        expect(validation.isDiagonalWin(upward)).to.equal(true);
+      });
+
+      it('large matrix with an downward diagnol', function() {
+        const downward = [
+          ['o', 'o', 'x', 'o', 'x'],
+          ['o', 'o', 'o', 'x', 'x'],
+          ['x', 'o', 'o', 'o', 'x'],
+          ['x', 'x', 'x', 'o', 'x'],
+          ['x', 'o', 'x', 'o', 'o'],
+        ];
+
+        expect(validation.isDiagonalWin(downward)).to.equal(true);
+      });
+
+      it('large matrix with an upward diagnol', function() {
+        const upward = [
+          ['o', 'o', 'x', 'o', 'x'],
+          ['o', 'o', 'o', 'x', 'x'],
+          ['x', 'o', 'x', 'o', 'x'],
+          ['x', 'x', 'x', 'o', 'x'],
+          ['x', 'o', 'x', 'o', 'x'],
+        ];
+
+        expect(validation.isDiagonalWin(upward)).to.equal(true);
       });
     });
   });
