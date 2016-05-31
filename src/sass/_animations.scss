@@ -43,3 +43,17 @@ $dramatic: 1s;
 .swoop-down-dramatic {
   animation: swoop-down $dramatic;
 }
+
+@keyframes flipX {
+  0% {
+    transform: rotateY(180deg);
+  }
+
+  100% {
+    transform: none;
+  }
+}
+
+.flip {
+  animation: flipX $short;
+}

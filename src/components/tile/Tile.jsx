@@ -1,17 +1,24 @@
 import React from 'react';
 
 const Tile = ({ claim, index, rowIndex, move }) => {
+  const classList = [
+    'tile',
+    'animated',
+  ];
+
+  classList.push((claim) ? 'flip' : '');
+
   const opts = {
     disabled: claim !== '',
     'data-coords': `${rowIndex},${index}`,
-    className: 'tile animated swoop-in',
+    className: classList.join(' '),
     href: '',
     onClick: move,
   };
 
   return (
     <button {...opts}>
-      {(claim) ? <span className="claim animated swoop-in">{claim}</span> : ''}
+      {(claim) ? <span className="claim">{claim}</span> : ''}
     </button>
   );
 };

@@ -2,9 +2,11 @@
   display: flex;
   flex-direction: column;
   height: 800px;
+  height: 40vw;
   justify-content: center;
   margin: auto;
   width: 800px;
+  width: 40vw;
 }
 
 .row {
@@ -26,9 +28,16 @@
   outline: none;
   padding: auto;
   text-align: center;
+  box-shadow: 0px 10px 15px rgba(0,0,0,0.25);
 
   &[disabled] {
     cursor: not-allowed;
+  }
+
+  &.flip {
+    background: rgba(255,255,255,0.75);
+    background: linear-gradient(-140deg, #DCAAAA 0%, #BF79B7 50%, #7B68C8 100%);
+    opacity: 0.75;
   }
 }
 
@@ -36,6 +45,7 @@
   color: rgba(0,0,0,0.75);
   font-weight: 300;
   font-size: 12em;
+  font-size: 8vw;
   text-shadow: -1px 1px 1px rgba(0,0,0,0.25);
   text-transform: uppercase;
 }
