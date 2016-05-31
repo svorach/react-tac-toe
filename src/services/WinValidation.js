@@ -1,10 +1,30 @@
+import { equalContents } from '../utils/arrayUtils.js';
+import { getColumn, getDiagonals } from '../utils/matrixUtils.js';
+
 class WinValidation {
-  checkForWinners() {
+  getWinner(matrix) {
+    const buildWinner = (direction) => ({
+      winner: this.winner,
+      direction,
+    });
+
+    if (this.isHorizontalWin(matrix)) {
+      return buildWinner('horizontal');
+    } else if (this.isVerticalWin(matrix)) {
+      return buildWinner('vertical');
+    } else if (this.isDiagonalWin(matrix)) {
+      return buildWinner('diagonal');
+    }
+
+    return false;
   }
 
   isHorizontalWin(matrix) {
     for (let rowIndex = 0; rowIndex < matrix.length; rowIndex ++) {
-      if (this.equalContents(matrix[rowIndex])) {
+      const player = equalContents(matrix[rowIndex]);
+
+      if (player) {
+        this.winner = player;
         return true;
       }
     }
@@ -14,9 +34,11 @@ class WinValidation {
 
   isVerticalWin(matrix) {
     for (let colIndex = 0; colIndex < matrix[0].length; colIndex ++) {
-      const col = this.getColumn(matrix, colIndex);
+      const col = getColumn(matrix, colIndex);
+      const player = equalContents(col);
 
-      if (this.equalContents(col)) {
+      if (player) {
+        this.winner = player;
         return true;
       }
     }
@@ -25,54 +47,15 @@ class WinValidation {
   }
 
   isDiagonalWin(matrix) {
-    const { downward, upward } = this.getDiagonals(matrix);
+    const { downward, upward } = getDiagonals(matrix);
+    const player = equalContents(downward) || equalContents(upward);
 
-    return this.equalContents(downward) || this.equalContents(upward) || false;
-  }
-
-  equalContents(array) {
-    if (!array.length) {
-      return false;
+    if (player) {
+      this.winner = player;
+      return true;
     }
 
-    const val = array[0];
-
-    for (let i = 0; i < array.length; i ++) {
-      if (array[i] !== val) {
-        return false;
-      }
-    }
-
-    this.winner = val;
-
-    return (true);
-  }
-
-  getColumn(matrix, columnIndex) {
-    let col = [];
-
-    for (let row = 0; row < matrix.length; row ++) {
-      col.push(matrix[row][columnIndex]);
-    }
-
-    return col;
-  }
-
-  getDiagonals(matrix) {
-    const matrixLength = matrix[0].length;
-
-    let downward = [];
-    let upward = [];
-
-    for (let i = 0; i < matrixLength; i ++) {
-      downward.push(matrix[i][i]);
-    }
-
-    for (let x = matrixLength - 1, y = 0; x > -1; x --, y ++) {
-      upward.push(matrix[y][x]);
-    }
-
-    return { downward, upward };
+    return false;
   }
 }
 

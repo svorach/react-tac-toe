@@ -10,75 +10,6 @@ describe('Win Validation', function() {
     expect(typeof validation).to.equal('object');
   });
 
-  describe('equalContents', function() {
-    it('should be a function', function() {
-      expect(typeof validation.equalContents).to.equal('function');
-    });
-
-    it('should return false if an empty array is passed in', function() {
-      expect(validation.equalContents([])).to.equal(false);
-    });
-
-    it('should return true if all contents in an array are the same', function() {
-      const test = ['o', 'o', 'o'];
-      const intTest = [0, 0, 0, 0];
-      const largeTest = test.concat(test).concat(test);
-
-      expect(validation.equalContents(test)).to.equal(true);
-      expect(validation.equalContents(intTest)).to.equal(true);
-      expect(validation.equalContents(largeTest)).to.equal(true);
-    });
-
-    it('should return false if all contents in an array are not the same', function() {
-      const test = ['x', 'o', 'x'];
-      const intTest = [1, 2, 3, 4];
-      const largeTest = test.concat(test).concat(test);
-
-      expect(validation.equalContents(test)).to.equal(false);
-      expect(validation.equalContents(intTest)).to.equal(false);
-      expect(validation.equalContents(largeTest)).to.equal(false);
-    });
-  });
-
-  describe('getColumn', function() {
-    it('should be a function', function() {
-      expect(typeof validation.getColumn).to.equal('function');
-    });
-
-    it('should return an array with all of the values in a column of an array matrix', function() {
-      const matrix = [
-        ['x', 'o', 'x'],
-        ['x', 'x', 'o'],
-        ['x', 'x', 'o'],
-      ];
-
-      expect(validation.getColumn(matrix, 0)).to.deep.equal(['x', 'x', 'x']);
-      expect(validation.getColumn(matrix, 1)).to.deep.equal(['o', 'x', 'x']);
-      expect(validation.getColumn(matrix, 2)).to.deep.equal(['x', 'o', 'o']);
-    });
-  });
-
-  describe('getDiagonals', function() {
-    it('should be a function', function() {
-      expect(typeof validation.getDiagonals).to.equal('function');
-    });
-
-    it('should return an object with downward and upward arrays extracted from a matrix', function() {
-      const matrix = [
-        [1, 2, 3],
-        [4, 5, 6],
-        [7, 8, 9],
-      ];
-
-      expect(typeof validation.getDiagonals(matrix)).to.equal('object');
-
-      const { downward, upward } = validation.getDiagonals(matrix);
-
-      expect(downward).to.include.members([1, 5, 9]);
-      expect(upward).to.include.members([7, 5, 3]);
-    });
-  });
-
   describe('isHorizontalWin', function() {
     it('should be a function', function() {
       expect(typeof validation.isHorizontalWin).to.equal('function');
@@ -262,4 +193,62 @@ describe('Win Validation', function() {
       });
     });
   });
+
+  describe('getWinner', function() {
+    it('should be a function', function() {
+      expect(typeof validation.getWinner).to.equal('function');
+    });
+
+    it('should return false no winner is present', function() {
+      const incompleteGame = [
+        ['', 'o', 'x'],
+        ['o', '', 'o'],
+        ['x', 'o', ''],
+      ];
+
+      expect(validation.getWinner(incompleteGame)).to.equal(false);
+    });
+
+    describe('should return a winner object with the direction and player that won when a', function() {
+      it('horizontal win occurs', function() {
+        const horizontalOWin = [
+          ['', 'o', 'x'],
+          ['o', 'o', 'o'],
+          ['x', 'x', ''],
+        ];
+
+        expect(validation.getWinner(horizontalOWin)).to.deep.equal({ winner: 'o', direction: 'horizontal' });
+      });
+
+      it('vertical win occurs', function() {
+        const horizontalOWin = [
+          ['o', 'o', 'x'],
+          ['o', 'x', 'o'],
+          ['o', 'x', ''],
+        ];
+
+        expect(validation.getWinner(horizontalOWin)).to.deep.equal({ winner: 'o', direction: 'vertical' });
+      });
+
+      it('downward diagonal win occurs', function() {
+        const horizontalOWin = [
+          ['x', 'o', 'x'],
+          ['o', 'x', 'o'],
+          ['o', 'x', 'x'],
+        ];
+
+        expect(validation.getWinner(horizontalOWin)).to.deep.equal({ winner: 'x', direction: 'diagonal' });
+      });
+
+      it('upward diagonal win occurs', function() {
+        const horizontalOWin = [
+          ['x', 'o', 'x'],
+          ['o', 'x', 'o'],
+          ['x', 'x', 'o'],
+        ];
+
+        expect(validation.getWinner(horizontalOWin)).to.deep.equal({ winner: 'x', direction: 'diagonal' });
+      });
+    });
+  })
 });

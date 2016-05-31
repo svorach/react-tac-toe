@@ -4,6 +4,9 @@ import { createStore, combineReducers } from 'redux';
 
 import './sass/app.scss';
 import Board from './components/board/Board.jsx';
+import WinValidation from './services/WinValidation.js';
+
+const validation = new WinValidation();
 
 function BoardMatrix(size = 3) {
   const board = [];
@@ -79,6 +82,12 @@ class TicTacToe extends React.Component {
       y: parseInt(y, 10),
       player: store.getState().player,
     });
+
+    const win = validation.getWinner(store.getState().board);
+
+    if (win) {
+      console.log(win);
+    }
 
     store.dispatch({ type: 'SWITCH_PLAYER' });
   }
