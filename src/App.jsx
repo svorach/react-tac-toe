@@ -1,67 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, combineReducers } from 'redux';
 
 import './sass/app.scss';
 import Board from './components/board/Board.jsx';
 import WinValidation from './services/WinValidation.js';
+import store from './stores/ticTacToe.js';
 
 const validation = new WinValidation();
-
-function BoardMatrix(size = 3) {
-  const board = [];
-
-  for (let rowIndex = 0; rowIndex < size; rowIndex ++) {
-    const row = [];
-
-    for (let colIndex = 0; colIndex < size; colIndex++) {
-      row.push('');
-    }
-
-    board.push(row);
-  }
-
-  return board;
-}
-
-const player = (state = 'o', action) => {
-  switch (action.type) {
-    case 'SWITCH_PLAYER':
-      return (state === 'x') ? 'o' : 'x';
-    default:
-      return state;
-  }
-};
-
-const board = (state = new BoardMatrix(), action) => {
-  const newState = state.slice();
-
-  switch (action.type) {
-    case 'MOVE':
-      newState[action.x][action.y] = action.player;
-      return newState;
-    case 'INIT':
-    default:
-      return state;
-  }
-};
-
-
-const ticTacToeReducer = combineReducers({ board, player });
-
-const rootReducer = (state, action) => {
-  let newState;
-
-  if (action.type === 'RESET') {
-    newState = undefined;
-  } else {
-    newState = state;
-  }
-
-  return ticTacToeReducer(newState, action);
-};
-
-const store = createStore(rootReducer);
 
 class TicTacToe extends React.Component {
   constructor(props) {

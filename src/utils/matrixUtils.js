@@ -24,4 +24,20 @@ module.exports = {
 
     return { downward, upward };
   },
+
+  Matrix(size = 3) {
+    const matrix = [];
+
+    for (let rowIndex = 0; rowIndex < size; rowIndex ++) {
+      const row = [];
+
+      for (let colIndex = 0; colIndex < size; colIndex++) {
+        row.push('');
+      }
+
+      matrix.push(row);
+    }
+
+    return matrix;
+  },
 };
