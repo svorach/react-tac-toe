@@ -1,9 +1,10 @@
 import { createStore, combineReducers } from 'redux';
 import player from '../reducers/player.js';
 import board from '../reducers/board.js';
+import size from '../reducers/size.js';
 import winner from '../reducers/winner.js';
 
-const ticTacToe = combineReducers({ board, player, winner });
+const ticTacToe = combineReducers({ board, size, player, winner });
 
 const rootReducer = (state, action) => {
   let newState;

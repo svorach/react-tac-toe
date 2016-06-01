@@ -16,6 +16,17 @@ class TicTacToe extends React.Component {
     };
   }
 
+  setSize(event) {
+    const size = event.target.value;
+
+    store.dispatch({ type: 'SET_BOARD_SIZE', size });
+  }
+
+  newGame(event) {
+    event.preventDefault();
+    store.dispatch({ type: 'NEW_GAME', size: store.getState().size });
+  }
+
   move(event) {
     const [x, y] = event.target.dataset.coords.split(',');
 
@@ -29,15 +40,21 @@ class TicTacToe extends React.Component {
     store.dispatch({ type: 'SWITCH_PLAYER' });
   }
 
-  reset(event) {
-    event.preventDefault();
-    store.dispatch({ type: 'RESET' });
-  }
-
   render() {
+    console.log(store.getState());
+
     return (
       <div id="container">
-        <Board {...store.getState()} move={this.move} reset={this.reset} />
+        <Board
+          {...store.getState()}
+          move={this.move}
+          newGame={this.newGame}
+          setSize={this.setSize}
+        />
+
+        <footer>
+          <a className="reset" href="" onClick={this.newGame}>reset</a>
+        </footer>
       </div>
     );
   }

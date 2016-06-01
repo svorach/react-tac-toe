@@ -24,7 +24,7 @@ const getWinner = (matrix) => {
   return false;
 };
 
-const Board = ({ board, move, reset }) => {
+const Board = ({ board, size, move, newGame, setSize }) => {
   const winner = getWinner(board);
 
   const boardRows = board.map(
@@ -35,7 +35,7 @@ const Board = ({ board, move, reset }) => {
     const hasWinner = () => typeof winner.player !== 'undefined';
 
     if (hasWinner()) {
-      return <Winner winner={winner} reset={reset} />;
+      return <Winner {...{ size, newGame, winner, setSize }} />;
     }
 
     return '';
@@ -51,9 +51,10 @@ const Board = ({ board, move, reset }) => {
 
 Board.propTypes = {
   board: React.PropTypes.array.isRequired,
+  size: React.PropTypes.number.isRequired,
   move: React.PropTypes.func.isRequired,
-  reset: React.PropTypes.func.isRequired,
-  winner: React.PropTypes.object,
+  newGame: React.PropTypes.func.isRequired,
+  setSize: React.PropTypes.func.isRequired,
 };
 
 module.exports = Board;

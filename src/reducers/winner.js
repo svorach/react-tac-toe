@@ -5,9 +5,6 @@ const winner = (state = {}, action) => {
     case 'WIN':
       newState = action.winner;
       return newState;
-    case 'TIE':
-      newState = { player: 'Tie' };
-      return newState;
     default:
       return state;
   }
