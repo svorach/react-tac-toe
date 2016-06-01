@@ -24,8 +24,19 @@ const getWinner = (matrix) => {
   return false;
 };
 
-const Board = ({ board, move, reset }) => {
+const Board = ({ board, size, move, newGame, setSize }) => {
   const winner = getWinner(board);
+  const boardClasses = [
+    'board',
+    'animated',
+    'swoop-down-dramatic',
+  ];
+
+  if (size >= 5 && size < 7) {
+    boardClasses.push('large');
+  } else if (size >= 7) {
+    boardClasses.push('huge');
+  }
 
   const boardRows = board.map(
     (boardRow, i) => <Row key={i} row={boardRow} index={i} move={move} />
@@ -35,14 +46,14 @@ const Board = ({ board, move, reset }) => {
     const hasWinner = () => typeof winner.player !== 'undefined';
 
     if (hasWinner()) {
-      return <Winner winner={winner} reset={reset} />;
+      return <Winner {...{ size, newGame, winner, setSize }} />;
     }
 
     return '';
   };
 
   return (
-    <div className="board animated swoop-down-dramatic">
+    <div className={boardClasses.join(' ')}>
       {displayWinner()}
       {boardRows}
     </div>
@@ -51,9 +62,10 @@ const Board = ({ board, move, reset }) => {
 
 Board.propTypes = {
   board: React.PropTypes.array.isRequired,
+  size: React.PropTypes.number.isRequired,
   move: React.PropTypes.func.isRequired,
-  reset: React.PropTypes.func.isRequired,
-  winner: React.PropTypes.object,
+  newGame: React.PropTypes.func.isRequired,
+  setSize: React.PropTypes.func.isRequired,
 };
 
 module.exports = Board;

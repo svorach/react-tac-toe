@@ -1,5 +1,4 @@
 # react-tac-toe #
-
 [Demo](http://svorach.github.io/react-tac-toe/)
 
 ### How do I get set up? ###

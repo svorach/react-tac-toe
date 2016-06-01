@@ -13,7 +13,25 @@ class TicTacToe extends React.Component {
     this.state = {
       board: props.board,
       player: props.player,
+      size: props.size,
     };
+  }
+
+  setSize(event) {
+    const size = event.target.value;
+
+    store.dispatch({ type: 'SET_SIZE', size });
+  }
+
+  newGame(event) {
+    event.preventDefault();
+    store.dispatch({ type: 'NEW_GAME', size: store.getState().size });
+  }
+
+  reset(event) {
+    event.preventDefault();
+    store.dispatch({ type: 'SET_SIZE', size: 3 });
+    store.dispatch({ type: 'NEW_GAME', size: 3 });
   }
 
   move(event) {
@@ -29,15 +47,20 @@ class TicTacToe extends React.Component {
     store.dispatch({ type: 'SWITCH_PLAYER' });
   }
 
-  reset(event) {
-    event.preventDefault();
-    store.dispatch({ type: 'RESET' });
-  }
-
   render() {
     return (
       <div id="container">
-        <Board {...store.getState()} move={this.move} reset={this.reset} />
+        <Board
+          {...store.getState()}
+          move={this.move}
+          newGame={this.newGame}
+          setSize={this.setSize}
+        />
+
+        <footer>
+          <a className="reset" href="" onClick={this.newGame}>reset</a>
+          <a className="reset" href="" onClick={this.reset}>reset to 3x3</a>
+        </footer>
       </div>
     );
   }
@@ -46,6 +69,7 @@ class TicTacToe extends React.Component {
 TicTacToe.propTypes = {
   board: React.PropTypes.array.isRequired,
   player: React.PropTypes.string.isRequired,
+  size: React.PropTypes.number.isRequired,
 };
 
 const render = () => {
