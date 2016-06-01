@@ -12,3 +12,10 @@
   width: 800px;
   width: 90vh;
 }
+
+@media (max-width: 800px) {
+  .board {
+    height: 90vw;
+    width: 90vw;
+  }
+}

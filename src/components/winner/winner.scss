@@ -17,12 +17,20 @@
   display: inline-block;
   font-weight: 300;
   font-size: 2em;
+  font-size: 5vh;
   text-shadow: -1px 1px 1px rgba(0,0,0,0.25);
-  margin: 40px auto;
+  margin: 10vh 0;
   text-align: center;
   text-decoration: none;
 
   &:hover {
     border-bottom: 0.1em solid #fff;
+  }
+}
+
+@media (max-width: 800px) {
+  .reset {
+    font-size: 5vw;
+    margin: 10vw 0;
   }
 }
