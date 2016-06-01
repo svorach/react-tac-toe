@@ -16,10 +16,7 @@ module.exports = {
 
     for (let i = 0; i < matrixLength; i ++) {
       downward.push(matrix[i][i]);
-    }
-
-    for (let x = matrixLength - 1, y = 0; x > -1; x --, y ++) {
-      upward.push(matrix[y][x]);
+      upward.push(matrix[i][matrixLength - i - 1]);
     }
 
     return { downward, upward };
