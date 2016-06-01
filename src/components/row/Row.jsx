@@ -1,6 +1,8 @@
 import React from 'react';
 import Tile from '../tile/Tile.jsx';
 
+import './row.scss';
+
 const Row = ({ row, index, move }) => {
   const mappedRows = row.map(
     (claim, i) => <Tile key={i} claim={claim} rowIndex={index} index={i} move={move} />

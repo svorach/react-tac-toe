@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import arrayUtils from '../../src/utils/arrayUtils.js';
+import arrayUtils from '../../src/utils/array.js';
 
 describe('arrayUtils', function() {
   describe('equalContents', function() {

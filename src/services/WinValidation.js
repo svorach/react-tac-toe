@@ -1,10 +1,10 @@
-import { equalContents } from '../utils/arrayUtils.js';
-import { getColumn, getDiagonals } from '../utils/matrixUtils.js';
+import { equalContents } from '../utils/array.js';
+import { getColumn, getDiagonals } from '../utils/matrix.js';
 
 class WinValidation {
   getWinner(matrix) {
     const buildWinner = (direction) => ({
-      winner: this.winner,
+      player: this.winner,
       direction,
     });
 

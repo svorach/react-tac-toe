@@ -1,4 +1,4 @@
-import { Matrix } from '../utils/matrixUtils.js';
+import { Matrix } from '../utils/matrix.js';
 
 const board = (state = new Matrix(), action) => {
   const newState = state.slice();

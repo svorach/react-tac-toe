@@ -217,7 +217,7 @@ describe('Win Validation', function() {
           ['x', 'x', ''],
         ];
 
-        expect(validation.getWinner(horizontalOWin)).to.deep.equal({ winner: 'o', direction: 'horizontal' });
+        expect(validation.getWinner(horizontalOWin)).to.deep.equal({ player: 'o', direction: 'horizontal' });
       });
 
       it('vertical win occurs', function() {
@@ -227,7 +227,7 @@ describe('Win Validation', function() {
           ['o', 'x', ''],
         ];
 
-        expect(validation.getWinner(horizontalOWin)).to.deep.equal({ winner: 'o', direction: 'vertical' });
+        expect(validation.getWinner(horizontalOWin)).to.deep.equal({ player: 'o', direction: 'vertical' });
       });
 
       it('downward diagonal win occurs', function() {
@@ -237,7 +237,7 @@ describe('Win Validation', function() {
           ['o', 'x', 'x'],
         ];
 
-        expect(validation.getWinner(horizontalOWin)).to.deep.equal({ winner: 'x', direction: 'diagonal' });
+        expect(validation.getWinner(horizontalOWin)).to.deep.equal({ player: 'x', direction: 'diagonal' });
       });
 
       it('upward diagonal win occurs', function() {
@@ -247,7 +247,7 @@ describe('Win Validation', function() {
           ['x', 'x', 'o'],
         ];
 
-        expect(validation.getWinner(horizontalOWin)).to.deep.equal({ winner: 'x', direction: 'diagonal' });
+        expect(validation.getWinner(horizontalOWin)).to.deep.equal({ player: 'x', direction: 'diagonal' });
       });
     });
   })
