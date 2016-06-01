@@ -1,6 +1,6 @@
 import React from 'react';
 import { expect } from 'chai';
-import { horizontal, vertical, diagonal } from '../../src/utils/winConditions.js';
+import { horizontal, vertical, diagonal, tie } from '../../src/utils/winConditions.js';
 
 describe('winConditions', function() {
   describe('horizontal', function() {
@@ -184,6 +184,32 @@ describe('winConditions', function() {
 
         expect(diagonal(upward)).to.equal('x');
       });
+    });
+  });
+
+  describe('tie', function() {
+    it('should be a function', function() {
+      expect(typeof tie).to.equal('function');
+    });
+
+    it('should return false if all tiles are not claimed', function() {
+      const emptyTiles = [
+        ['x', 'o', 'x'],
+        ['', '', 'o'],
+        ['', 'x', 'o'],
+      ];
+
+      expect(tie(emptyTiles)).to.equal(false);
+    });
+
+    it('should return true all tiles are claimed', function() {
+      const allClaimed = [
+        ['x', 'o', 'x'],
+        ['x', 'o', 'o'],
+        ['o', 'x', 'o'],
+      ];
+
+      expect(tie(allClaimed)).to.equal(true);
     });
   });
 });

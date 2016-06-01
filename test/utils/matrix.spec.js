@@ -14,7 +14,17 @@ describe('matrixUtils', function() {
         ['x', 'x', 'o'],
       ];
 
+      const largeMatrix = [
+        ['x', 'o', 'x'],
+        ['x', 'x', 'o'],
+        ['x', 'x', 'o'],
+        ['x', 'o', 'x'],
+        ['x', 'x', 'o'],
+        ['x', 'x', 'o'],
+      ];
+
       expect(getSize(matrix)).to.equal(9);
+      expect(getSize(largeMatrix)).to.equal(18);
     });
   });
 

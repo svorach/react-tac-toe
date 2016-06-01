@@ -3,13 +3,13 @@ import './winner.scss';
 
 const Winner = ({ winner, reset }) => {
   const display = {};
-  const isStaleMate = () => winner.player.toUpperCase() === 'STALEMATE';
+  const isStaleMate = () => winner.player.toUpperCase() === 'TIE';
 
   if (isStaleMate()) {
-    display.header = 'Stalemate!';
-    display.body = 'Both players must have duked it out in an intense battle.';
+    display.header = 'Tie!';
+    display.body = 'Cat scratch fever.';
   } else {
-    display.header = `Congratulations player ${winner.player.toUpperCase()}!`;
+    display.header = `Winning player is ${winner.player.toUpperCase()}`;
     display.body = `You have won the game with a ${winner.direction} win.`;
   }
 

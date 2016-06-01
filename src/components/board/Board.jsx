@@ -1,7 +1,7 @@
 import React from 'react';
 import Row from '../row/Row.jsx';
 import Winner from '../winner/Winner.jsx';
-import { horizontal, vertical, diagonal } from '../../utils/winConditions.js';
+import { horizontal, vertical, diagonal, tie } from '../../utils/winConditions.js';
 
 import './board.scss';
 
@@ -9,6 +9,7 @@ const getWinner = (matrix) => {
   const horizontalWinner = horizontal(matrix);
   const verticalWinner = vertical(matrix);
   const diagonalWinner = diagonal(matrix);
+  const tieGame = tie(matrix);
 
   if (horizontalWinner) {
     return { player: horizontalWinner, direction: 'horizontal' };
@@ -16,6 +17,8 @@ const getWinner = (matrix) => {
     return { player: verticalWinner, direction: 'vertical' };
   } else if (diagonalWinner) {
     return { player: diagonalWinner, direction: 'diagonal' };
+  } else if (tieGame) {
+    return { player: 'Tie' };
   }
 
   return false;

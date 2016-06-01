@@ -1,5 +1,5 @@
 import { equalContents } from '../utils/array.js';
-import { getColumn, getDiagonals } from '../utils/matrix.js';
+import { getColumn, getDiagonals, getSize } from '../utils/matrix.js';
 
 const winConditions = {
   horizontal: (matrix) => {
@@ -32,6 +32,17 @@ const winConditions = {
     const player = equalContents(downward) || equalContents(upward);
 
     return player || false;
+  },
+
+  tie: (matrix) => {
+    const size = getSize(matrix);
+    let claimed = '';
+
+    matrix.forEach((row, idx) => {
+      claimed += matrix[idx].reduce((a, b) => a + b);
+    });
+
+    return claimed.length === size;
   },
 };
 
