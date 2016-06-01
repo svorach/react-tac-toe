@@ -1,10 +1,29 @@
 import React from 'react';
 import Row from '../row/Row.jsx';
 import Winner from '../winner/Winner.jsx';
+import { horizontal, vertical, diagonal } from '../../utils/winConditions.js';
 
 import './board.scss';
 
-const Board = ({ board, move, reset, winner }) => {
+const getWinner = (matrix) => {
+  const horizontalWinner = horizontal(matrix);
+  const verticalWinner = vertical(matrix);
+  const diagonalWinner = diagonal(matrix);
+
+  if (horizontalWinner) {
+    return { player: horizontalWinner, direction: 'horizontal' };
+  } else if (verticalWinner) {
+    return { player: verticalWinner, direction: 'vertical' };
+  } else if (diagonalWinner) {
+    return { player: diagonalWinner, direction: 'diagonal' };
+  }
+
+  return false;
+};
+
+const Board = ({ board, move, reset }) => {
+  const winner = getWinner(board);
+
   const boardRows = board.map(
     (boardRow, i) => <Row key={i} row={boardRow} index={i} move={move} />
   );

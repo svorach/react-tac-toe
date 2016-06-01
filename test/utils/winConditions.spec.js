@@ -1,18 +1,11 @@
 import React from 'react';
 import { expect } from 'chai';
+import { horizontal, vertical, diagonal } from '../../src/utils/winConditions.js';
 
-import WinValidation from '../../src/services/WinValidation.js';
-
-const validation = new WinValidation();
-
-describe('Win Validation', function() {
-  it('should be an object', function() {
-    expect(typeof validation).to.equal('object');
-  });
-
-  describe('isHorizontalWin', function() {
+describe('winConditions', function() {
+  describe('horizontal', function() {
     it('should be a function', function() {
-      expect(typeof validation.isHorizontalWin).to.equal('function');
+      expect(typeof horizontal).to.equal('function');
     });
 
     it('should return false if no horizontal win is present', function() {
@@ -22,7 +15,7 @@ describe('Win Validation', function() {
         ['x', 'x', 'o'],
       ];
 
-      expect(validation.isHorizontalWin(noHorizontalWin)).to.equal(false);
+      expect(horizontal(noHorizontalWin)).to.equal(false);
     });
 
     describe('should return true if a horizontal win is present in', function() {
@@ -33,7 +26,7 @@ describe('Win Validation', function() {
           ['x', 'x', 'o'],
         ];
 
-        expect(validation.isHorizontalWin(firstRow)).to.equal(true);
+        expect(horizontal(firstRow)).to.equal('x');
       });
 
       it('the second row', function() {
@@ -43,7 +36,7 @@ describe('Win Validation', function() {
           ['x', 'x', 'o'],
         ];
 
-        expect(validation.isHorizontalWin(secondRow)).to.equal(true);
+        expect(horizontal(secondRow)).to.equal('o');
       });
 
       it('the third row', function() {
@@ -53,7 +46,7 @@ describe('Win Validation', function() {
           ['o', 'o', 'o'],
         ];
 
-        expect(validation.isHorizontalWin(thirdRow)).to.equal(true);
+        expect(horizontal(thirdRow)).to.equal('o');
       });
 
       it('any row', function() {
@@ -66,14 +59,14 @@ describe('Win Validation', function() {
           ['x', 'x', 'x', 'x', 'x', 'x'],
         ];
 
-        expect(validation.isHorizontalWin(anyRow)).to.equal(true);
+        expect(horizontal(anyRow)).to.equal('x');
       });
     });
   });
 
-  describe('isVerticalWin', function() {
+  describe('vertical', function() {
     it('should be a function', function() {
-      expect(typeof validation.isVerticalWin).to.equal('function');
+      expect(typeof vertical).to.equal('function');
     });
 
     it('should return false if no vertical win is present', function() {
@@ -83,7 +76,7 @@ describe('Win Validation', function() {
         ['x', 'x', 'o'],
       ];
 
-      expect(validation.isVerticalWin(noVerticalWin)).to.equal(false);
+      expect(vertical(noVerticalWin)).to.equal(false);
     });
 
     describe('should return true if a vertical win is present in', function() {
@@ -94,7 +87,7 @@ describe('Win Validation', function() {
           ['x', 'x', 'o'],
         ];
 
-        expect(validation.isVerticalWin(firstCol)).to.equal(true);
+        expect(vertical(firstCol)).to.equal('x');
       });
 
       it('the second col', function() {
@@ -104,7 +97,7 @@ describe('Win Validation', function() {
           ['x', 'x', 'o'],
         ];
 
-        expect(validation.isVerticalWin(secondCol)).to.equal(true);
+        expect(vertical(secondCol)).to.equal('x');
       });
 
       it('the third col', function() {
@@ -114,7 +107,7 @@ describe('Win Validation', function() {
           ['o', 'o', 'o'],
         ];
 
-        expect(validation.isVerticalWin(thirdCol)).to.equal(true);
+        expect(vertical(thirdCol)).to.equal('o');
       });
 
       it('any col', function() {
@@ -127,24 +120,24 @@ describe('Win Validation', function() {
           ['x', 'x', 'x', 'o', 'x', 'x'],
         ];
 
-        expect(validation.isVerticalWin(anyCol)).to.equal(true);
+        expect(vertical(anyCol)).to.equal('o');
       });
     });
   });
 
-  describe('isDiagnolWin', function() {
+  describe('diagonal', function() {
     it('should be a function', function() {
-      expect(typeof validation.isDiagonalWin).to.equal('function');
+      expect(typeof diagonal).to.equal('function');
     });
 
     it('should return false if no diagonal win is present', function() {
-      const noVerticalWin = [
+      const noDiagonalWin = [
         ['x', 'o', 'x'],
         ['o', 'o', 'o'],
         ['x', 'x', 'o'],
       ];
 
-      expect(validation.isDiagonalWin(noVerticalWin)).to.equal(false);
+      expect(diagonal(noDiagonalWin)).to.equal(false);
     });
 
     describe('should return true if a diagonal win is present in a', function() {
@@ -155,17 +148,17 @@ describe('Win Validation', function() {
           ['o', 'o', 'x'],
         ];
 
-        expect(validation.isDiagonalWin(downward)).to.equal(true);
+        expect(diagonal(downward)).to.equal('x');
       });
 
       it('3x3 matrix with an upward diagnol', function() {
         const upward = [
           ['x', 'o', 'x'],
           ['o', 'x', 'o'],
-          ['x', 'o', 'x'],
+          ['x', 'o', 'o'],
         ];
 
-        expect(validation.isDiagonalWin(upward)).to.equal(true);
+        expect(diagonal(upward)).to.equal('x');
       });
 
       it('large matrix with an downward diagnol', function() {
@@ -177,7 +170,7 @@ describe('Win Validation', function() {
           ['x', 'o', 'x', 'o', 'o'],
         ];
 
-        expect(validation.isDiagonalWin(downward)).to.equal(true);
+        expect(diagonal(downward)).to.equal('o');
       });
 
       it('large matrix with an upward diagnol', function() {
@@ -189,66 +182,8 @@ describe('Win Validation', function() {
           ['x', 'o', 'x', 'o', 'x'],
         ];
 
-        expect(validation.isDiagonalWin(upward)).to.equal(true);
+        expect(diagonal(upward)).to.equal('x');
       });
     });
   });
-
-  describe('getWinner', function() {
-    it('should be a function', function() {
-      expect(typeof validation.getWinner).to.equal('function');
-    });
-
-    it('should return false no winner is present', function() {
-      const incompleteGame = [
-        ['', 'o', 'x'],
-        ['o', '', 'o'],
-        ['x', 'o', ''],
-      ];
-
-      expect(validation.getWinner(incompleteGame)).to.equal(false);
-    });
-
-    describe('should return a winner object with the direction and player that won when a', function() {
-      it('horizontal win occurs', function() {
-        const horizontalOWin = [
-          ['', 'o', 'x'],
-          ['o', 'o', 'o'],
-          ['x', 'x', ''],
-        ];
-
-        expect(validation.getWinner(horizontalOWin)).to.deep.equal({ player: 'o', direction: 'horizontal' });
-      });
-
-      it('vertical win occurs', function() {
-        const horizontalOWin = [
-          ['o', 'o', 'x'],
-          ['o', 'x', 'o'],
-          ['o', 'x', ''],
-        ];
-
-        expect(validation.getWinner(horizontalOWin)).to.deep.equal({ player: 'o', direction: 'vertical' });
-      });
-
-      it('downward diagonal win occurs', function() {
-        const horizontalOWin = [
-          ['x', 'o', 'x'],
-          ['o', 'x', 'o'],
-          ['o', 'x', 'x'],
-        ];
-
-        expect(validation.getWinner(horizontalOWin)).to.deep.equal({ player: 'x', direction: 'diagonal' });
-      });
-
-      it('upward diagonal win occurs', function() {
-        const horizontalOWin = [
-          ['x', 'o', 'x'],
-          ['o', 'x', 'o'],
-          ['x', 'x', 'o'],
-        ];
-
-        expect(validation.getWinner(horizontalOWin)).to.deep.equal({ player: 'x', direction: 'diagonal' });
-      });
-    });
-  })
 });

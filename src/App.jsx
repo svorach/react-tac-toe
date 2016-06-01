@@ -2,12 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Board from './components/board/Board.jsx';
-import WinValidation from './services/WinValidation.js';
 import store from './stores/ticTacToe.js';
 
 import './sass/app.scss';
-
-const validation = new WinValidation();
 
 class TicTacToe extends React.Component {
   constructor(props) {
@@ -28,12 +25,6 @@ class TicTacToe extends React.Component {
       y: parseInt(y, 10),
       player: store.getState().player,
     });
-
-    const winner = validation.getWinner(store.getState().board);
-
-    if (winner) {
-      store.dispatch({ type: 'WIN', winner });
-    }
 
     store.dispatch({ type: 'SWITCH_PLAYER' });
   }
