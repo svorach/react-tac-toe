@@ -1,9 +1,19 @@
 module.exports = {
+  getSize: (matrix) => {
+    let size = 0;
+
+    for (let rowIndex = 0; rowIndex < matrix.length; rowIndex ++) {
+      size += matrix[rowIndex].length;
+    }
+
+    return size;
+  },
+
   getColumn: (matrix, columnIndex) => {
     const col = [];
 
-    for (let row = 0; row < matrix.length; row ++) {
-      col.push(matrix[row][columnIndex]);
+    for (let rowIndex = 0; rowIndex < matrix.length; rowIndex ++) {
+      col.push(matrix[rowIndex][columnIndex]);
     }
 
     return col;

@@ -1,7 +1,23 @@
 import { expect } from 'chai';
-import { getColumn, getDiagonals, Matrix } from '../../src/utils/matrix.js';
+import { getSize, getColumn, getDiagonals, Matrix } from '../../src/utils/matrix.js';
 
 describe('matrixUtils', function() {
+  describe('getSize', function() {
+    it('should be a function', function() {
+      expect(typeof getSize).to.equal('function');
+    });
+
+    it('should return a count of all the cells in a give matrix', function() {
+      const matrix = [
+        ['x', 'o', 'x'],
+        ['x', 'x', 'o'],
+        ['x', 'x', 'o'],
+      ];
+
+      expect(getSize(matrix)).to.equal(9);
+    });
+  });
+
   describe('getColumn', function() {
     it('should be a function', function() {
       expect(typeof getColumn).to.equal('function');
