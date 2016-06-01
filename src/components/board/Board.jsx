@@ -26,6 +26,17 @@ const getWinner = (matrix) => {
 
 const Board = ({ board, size, move, newGame, setSize }) => {
   const winner = getWinner(board);
+  const boardClasses = [
+    'board',
+    'animated',
+    'swoop-down-dramatic',
+  ];
+
+  if (size >= 5 && size < 7) {
+    boardClasses.push('large');
+  } else if (size >= 7) {
+    boardClasses.push('huge');
+  }
 
   const boardRows = board.map(
     (boardRow, i) => <Row key={i} row={boardRow} index={i} move={move} />
@@ -42,7 +53,7 @@ const Board = ({ board, size, move, newGame, setSize }) => {
   };
 
   return (
-    <div className="board animated swoop-down-dramatic">
+    <div className={boardClasses.join(' ')}>
       {displayWinner()}
       {boardRows}
     </div>

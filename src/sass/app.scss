@@ -31,6 +31,10 @@ a {
   line-height: 5vh;
   text-decoration: none;
   text-shadow: $shadow;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 p {
@@ -40,6 +44,10 @@ p {
 footer {
 	text-align: center;
 	height: 5vh;
+
+  a {
+    margin-right: 10px;
+  }
 }
 
 

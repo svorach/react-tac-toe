@@ -2,7 +2,7 @@ const size = (state = 3, action) => {
   let newState;
 
   switch (action.type) {
-    case 'SET_BOARD_SIZE':
+    case 'SET_SIZE':
       newState = parseInt(action.size, 10);
       return newState;
     default:

@@ -12,6 +12,10 @@
   padding: 40px;
 }
 
+.info {
+  font-size: 2.5vh;
+}
+
 .new-game {
   color: #fff;
   display: inline-block;
@@ -30,5 +34,9 @@
 @media (max-width: 800px) {
   .new-game {
     font-size: 5vw;
+  }
+
+  .info {
+    font-size: 2.5vw;
   }
 }

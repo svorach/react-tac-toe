@@ -3,9 +3,9 @@ import './winner.scss';
 
 const Winner = ({ winner, newGame, size, setSize }) => {
   const display = {};
-  const isStaleMate = () => winner.player.toUpperCase() === 'TIE';
+  const isTie = () => winner.player.toUpperCase() === 'TIE';
 
-  if (isStaleMate()) {
+  if (isTie()) {
     display.header = 'Tie!';
     display.body = 'Cat\'s game.';
   } else {
@@ -18,14 +18,14 @@ const Winner = ({ winner, newGame, size, setSize }) => {
       <div className="winner-wrapper">
         <h1>{display.header}</h1>
         <p>{display.body}</p>
-        <p>
-          If you would like to set a custom size, do so here.<br />
-          Must be greater than or equal to 3.<br />
-          If empty this will create a new 3x3 game.
+        <p className="info">
+          If you would like to set a custom size, you can do
+          so here. If the input is less than 3 or empty a new
+          game with the current size will start.
         </p>
         <input type="text" val={size} onChange={setSize} />
         <footer>
-          <a href="" className="new-game" onClick={newGame}>New Game</a>
+          <a href="" className="new-game" onClick={newGame}>new game</a>
         </footer>
       </div>
     </div>
