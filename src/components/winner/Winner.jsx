@@ -7,10 +7,10 @@ const Winner = ({ winner, reset }) => {
 
   if (isStaleMate()) {
     display.header = 'Tie!';
-    display.body = 'Cat scratch fever.';
+    display.body = 'Cat\'s game.';
   } else {
-    display.header = `Winning player is ${winner.player.toUpperCase()}`;
-    display.body = `You have won the game with a ${winner.direction} win.`;
+    display.header = `Winner is ${winner.player.toUpperCase()}`;
+    display.body = `Winning the game with a ${winner.direction} win.`;
   }
 
   return (
