@@ -1,11 +1,11 @@
 import React from 'react';
 import './winner.scss';
 
-const Winner = ({ winner, reset }) => {
+const Winner = ({ winner, newGame, size, setSize }) => {
   const display = {};
-  const isStaleMate = () => winner.player.toUpperCase() === 'TIE';
+  const isTie = () => winner.player.toUpperCase() === 'TIE';
 
-  if (isStaleMate()) {
+  if (isTie()) {
     display.header = 'Tie!';
     display.body = 'Cat\'s game.';
   } else {
@@ -18,7 +18,15 @@ const Winner = ({ winner, reset }) => {
       <div className="winner-wrapper">
         <h1>{display.header}</h1>
         <p>{display.body}</p>
-        <a href="" className="reset" onClick={reset}>reset</a>
+        <p className="info">
+          If you would like to set a custom size, you can do
+          so here. If the input is less than 3 or empty a new
+          game with the current size will start.
+        </p>
+        <input type="text" val={size} onChange={setSize} />
+        <footer>
+          <a href="" className="new-game" onClick={newGame}>new game</a>
+        </footer>
       </div>
     </div>
   );
@@ -26,7 +34,9 @@ const Winner = ({ winner, reset }) => {
 
 Winner.propTypes = {
   winner: React.PropTypes.object.isRequired,
-  reset: React.PropTypes.func.isRequired,
+  newGame: React.PropTypes.func.isRequired,
+  size: React.PropTypes.number.isRequired,
+  setSize: React.PropTypes.func.isRequired,
 };
 
 module.exports = Winner;

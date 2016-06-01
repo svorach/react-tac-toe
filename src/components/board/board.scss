@@ -11,11 +11,27 @@
   position: relative;
   width: 800px;
   width: 90vh;
+
+  &.large > .row > .tile > .claim {
+    font-size: 8vh;
+  }
+
+  &.huge > .row > .tile > .claim {
+    font-size: 4vh;
+  }
 }
 
 @media (max-width: 800px) {
   .board {
     height: 90vw;
     width: 90vw;
+
+    &.large > .row > .tile > .claim {
+      font-size: 8vw;
+    }
+
+    &.huge > .row > .tile > .claim {
+      font-size: 4vw;
+    }
   }
 }
