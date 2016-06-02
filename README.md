@@ -31,3 +31,7 @@ You can now open the index.html file now and view the compiled application
 ### Testing
 
     npm run test
+
+### Starter Pack
+
+Want to get started making react applications? Fork my [starter pack](https://github.com/svorach/react-redux-webpack-starter)
