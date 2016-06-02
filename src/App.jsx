@@ -57,7 +57,7 @@ class TicTacToe extends React.Component {
           setSize={this.setSize}
         />
 
-        <footer>
+        <footer className="pin-to-bottom">
           <a className="reset" href="" onClick={this.newGame}>reset</a>
           <a className="reset" href="" onClick={this.reset}>reset to 3x3</a>
         </footer>

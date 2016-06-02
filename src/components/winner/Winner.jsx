@@ -23,8 +23,8 @@ const Winner = ({ winner, newGame, size, setSize }) => {
           so here. If the input is less than 3 or empty a new
           game with the current size will start.
         </p>
-        <input type="text" val={size} onChange={setSize} />
         <footer>
+          <input type="text" placeholder="size" val={size} onChange={setSize} />
           <a href="" className="new-game" onClick={newGame}>new game</a>
         </footer>
       </div>

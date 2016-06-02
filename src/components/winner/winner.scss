@@ -2,6 +2,7 @@
   background: rgba(0,0,0,0.75);
   color: #fff;
   height: 100%;
+  overflow-y: auto;
   position: absolute;
   text-shadow: 0 1px 2px rgba(0,0,0,0.75);
   width: 100%;
@@ -10,33 +11,54 @@
 
 .winner-wrapper {
   padding: 40px;
-}
-
-.info {
-  font-size: 2.5vh;
-}
-
-.new-game {
-  color: #fff;
-  display: inline-block;
-  font-weight: 300;
-  font-size: 2em;
-  font-size: 5vh;
-  text-shadow: -1px 1px 1px rgba(0,0,0,0.25);
-  text-align: center;
-  text-decoration: none;
-
-  &:hover {
-    border-bottom: 0.1em solid #fff;
-  }
-}
-
-@media (max-width: 800px) {
-  .new-game {
-    font-size: 5vw;
-  }
 
   .info {
-    font-size: 2.5vw;
+    font-size: 2.5vh;
+    line-height: 3.5vh;
+  }
+
+  footer {
+    background: none;
+    font-size: 3vh;
+    line-height: 5vh;
+    margin: 5vh 0;
+  }
+}
+
+footer {
+  input {
+    background: rgba(255,255,255,0.25);
+    border: none;
+    color: #fff;
+    float: left;
+    font-size: inherit;
+    line-height: inherit;
+    outline: none;
+    text-indent: 5%;
+    width: 50%;
+  }
+
+  .new-game {
+    float: left;
+    font-size: inherit;
+    line-height: inherit;
+    margin: 0;
+    text-align: center;
+    text-decoration: none;
+    width: 50%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .winner-wrapper {
+    .info {
+      font-size: 3vw;
+      line-height: 5vw;
+    }
+
+    footer {
+      font-size: 4vw;
+      line-height: 4vw;
+    }
   }
 }
