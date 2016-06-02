@@ -1,6 +1,6 @@
+@import url(https://fonts.googleapis.com/css?family=Titillium+Web:400,700,300);
 @import 'animations';
-
-$shadow: 0 1px 1px rgba(0,0,0,0.25);
+@import 'variables';
 
 html,
 body {
@@ -12,50 +12,60 @@ html {
 	background: linear-gradient(160deg, #0ebfac 0%, #3c7ff5 30%, #5f44e8 75%);
   background-repeat: no-repeat;
   background-size: cover;
-	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+	font-family: 'Titillium Web', 'Helvetica Neue', 'Helvetica', sans-serif;
 	min-height: 100%;
+	position: relative;
 }
 
 h1 {
-	color: #fff;
-	text-shadow: shadow;
+	color: $primary;
 	font-weight: 300;
 	font-size: 2.4em;
 	font-size: 10vh;
 	margin: 0;
+	text-shadow: $shadow;
 }
 
 a {
-	color: #fff;
+	color: $primary;
   font-size: 2.5vh;
   line-height: 5vh;
   text-decoration: none;
   text-shadow: $shadow;
 
   &:hover {
-    text-decoration: underline;
+		color: $secondary;
   }
 }
 
 p {
 	font-size: 5vh;
+	line-height: 7vh;
 }
 
 footer {
+	background: $opaque-dark;
 	text-align: center;
 	height: 5vh;
 
   a {
-    margin-right: 10px;
+    margin-right: 2vw;
   }
 }
 
-@media (max-width: 800px) {
+.pin-to-bottom {
+	bottom: 0;
+	position: absolute;
+	width: 100%;
+}
+
+@media (max-width: 1024px) {
 	h1 {
 		font-size: 10vw;
 	}
 
 	p {
 		font-size: 5vw;
+		line-height: 5.75vw;
 	}
 }

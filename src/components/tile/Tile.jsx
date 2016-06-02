@@ -3,17 +3,18 @@ import React from 'react';
 import './tile.scss';
 
 const Tile = ({ claim, index, rowIndex, move }) => {
-  const classList = [
+  const tileClasses = [
     'tile',
     'animated',
   ];
 
-  classList.push((claim) ? 'flip' : '');
+  tileClasses.push((claim) ? 'flip' : '');
+  tileClasses.push(claim);
 
   const opts = {
     disabled: claim !== '',
     'data-coords': `${rowIndex},${index}`,
-    className: classList.join(' '),
+    className: tileClasses.join(' '),
     href: '',
     onClick: move,
   };

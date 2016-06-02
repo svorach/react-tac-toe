@@ -1,16 +1,16 @@
+$vh-size: 80vh;
+$vw-size: 80vw;
+
 .board {
   display: flex;
   flex-direction: column;
-  height: 800px;
-  height: 90vh;
+  height: $vh-size;
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 40px;
-  margin-top: 5vh;
+  margin-top: 7.5vh;
   position: relative;
-  width: 800px;
-  width: 90vh;
+  width: $vh-size;
 
   &.large > .row > .tile > .claim {
     font-size: 8vh;
@@ -23,8 +23,8 @@
 
 @media (max-width: 800px) {
   .board {
-    height: 90vw;
-    width: 90vw;
+    height: $vw-size;
+    width: $vw-size;
 
     &.large > .row > .tile > .claim {
       font-size: 8vw;
