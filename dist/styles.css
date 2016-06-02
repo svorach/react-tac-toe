@@ -46,23 +46,26 @@
 .winner-wrapper {
   padding: 40px; }
 
-.reset {
+.info {
+  font-size: 2.5vh; }
+
+.new-game {
   color: #fff;
   display: inline-block;
   font-weight: 300;
   font-size: 2em;
   font-size: 5vh;
   text-shadow: -1px 1px 1px rgba(0, 0, 0, 0.25);
-  margin: 10vh 0;
   text-align: center;
   text-decoration: none; }
-  .reset:hover {
+  .new-game:hover {
     border-bottom: 0.1em solid #fff; }
 
 @media (max-width: 800px) {
-  .reset {
-    font-size: 5vw;
-    margin: 10vw 0; } }
+  .new-game {
+    font-size: 5vw; }
+  .info {
+    font-size: 2.5vw; } }
 .board {
   display: flex;
   flex-direction: column;
@@ -76,11 +79,19 @@
   position: relative;
   width: 800px;
   width: 90vh; }
+  .board.large > .row > .tile > .claim {
+    font-size: 8vh; }
+  .board.huge > .row > .tile > .claim {
+    font-size: 4vh; }
 
 @media (max-width: 800px) {
   .board {
     height: 90vw;
-    width: 90vw; } }
+    width: 90vw; }
+    .board.large > .row > .tile > .claim {
+      font-size: 8vw; }
+    .board.huge > .row > .tile > .claim {
+      font-size: 4vw; } }
 .animated {
   transition: all 0.5s cubic-bezier(0, 0, 3, 0); }
 
@@ -132,6 +143,11 @@
 .scale-in-dramatic {
   animation: scale-in 1s; }
 
+html,
+body {
+  margin: 0;
+  padding: 0; }
+
 html {
   background: linear-gradient(160deg, #0ebfac 0%, #3c7ff5 30%, #5f44e8 75%);
   background-repeat: no-repeat;
@@ -141,14 +157,29 @@ html {
 
 h1 {
   color: #fff;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+  text-shadow: shadow;
   font-weight: 300;
   font-size: 2.4em;
   font-size: 10vh;
   margin: 0; }
 
+a {
+  color: #fff;
+  font-size: 2.5vh;
+  line-height: 5vh;
+  text-decoration: none;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25); }
+  a:hover {
+    text-decoration: underline; }
+
 p {
   font-size: 5vh; }
+
+footer {
+  text-align: center;
+  height: 5vh; }
+  footer a {
+    margin-right: 10px; }
 
 @media (max-width: 800px) {
   h1 {

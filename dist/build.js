@@ -88,12 +88,33 @@
 	
 	    _this.state = {
 	      board: props.board,
-	      player: props.player
+	      player: props.player,
+	      size: props.size
 	    };
 	    return _this;
 	  }
 	
 	  _createClass(TicTacToe, [{
+	    key: 'setSize',
+	    value: function setSize(event) {
+	      var size = event.target.value;
+	
+	      _ticTacToe2.default.dispatch({ type: 'SET_SIZE', size: size });
+	    }
+	  }, {
+	    key: 'newGame',
+	    value: function newGame(event) {
+	      event.preventDefault();
+	      _ticTacToe2.default.dispatch({ type: 'NEW_GAME', size: _ticTacToe2.default.getState().size });
+	    }
+	  }, {
+	    key: 'reset',
+	    value: function reset(event) {
+	      event.preventDefault();
+	      _ticTacToe2.default.dispatch({ type: 'SET_SIZE', size: 3 });
+	      _ticTacToe2.default.dispatch({ type: 'NEW_GAME', size: 3 });
+	    }
+	  }, {
 	    key: 'move',
 	    value: function move(event) {
 	      var _event$target$dataset = event.target.dataset.coords.split(',');
@@ -114,18 +135,30 @@
 	      _ticTacToe2.default.dispatch({ type: 'SWITCH_PLAYER' });
 	    }
 	  }, {
-	    key: 'reset',
-	    value: function reset(event) {
-	      event.preventDefault();
-	      _ticTacToe2.default.dispatch({ type: 'RESET' });
-	    }
-	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
 	        { id: 'container' },
-	        _react2.default.createElement(_Board2.default, _extends({}, _ticTacToe2.default.getState(), { move: this.move, reset: this.reset }))
+	        _react2.default.createElement(_Board2.default, _extends({}, _ticTacToe2.default.getState(), {
+	          move: this.move,
+	          newGame: this.newGame,
+	          setSize: this.setSize
+	        })),
+	        _react2.default.createElement(
+	          'footer',
+	          null,
+	          _react2.default.createElement(
+	            'a',
+	            { className: 'reset', href: '', onClick: this.newGame },
+	            'reset'
+	          ),
+	          _react2.default.createElement(
+	            'a',
+	            { className: 'reset', href: '', onClick: this.reset },
+	            'reset to 3x3'
+	          )
+	        )
 	      );
 	    }
 	  }]);
@@ -135,7 +168,8 @@
 	
 	TicTacToe.propTypes = {
 	  board: _react2.default.PropTypes.array.isRequired,
-	  player: _react2.default.PropTypes.string.isRequired
+	  player: _react2.default.PropTypes.string.isRequired,
+	  size: _react2.default.PropTypes.number.isRequired
 	};
 	
 	var render = function render() {
@@ -20460,10 +20494,19 @@
 	
 	var Board = function Board(_ref) {
 	  var board = _ref.board;
+	  var size = _ref.size;
 	  var move = _ref.move;
-	  var reset = _ref.reset;
+	  var newGame = _ref.newGame;
+	  var setSize = _ref.setSize;
 	
 	  var winner = getWinner(board);
+	  var boardClasses = ['board', 'animated', 'swoop-down-dramatic'];
+	
+	  if (size >= 5 && size < 7) {
+	    boardClasses.push('large');
+	  } else if (size >= 7) {
+	    boardClasses.push('huge');
+	  }
 	
 	  var boardRows = board.map(function (boardRow, i) {
 	    return _react2.default.createElement(_Row2.default, { key: i, row: boardRow, index: i, move: move });
@@ -20475,7 +20518,7 @@
 	    };
 	
 	    if (hasWinner()) {
-	      return _react2.default.createElement(_Winner2.default, { winner: winner, reset: reset });
+	      return _react2.default.createElement(_Winner2.default, { size: size, newGame: newGame, winner: winner, setSize: setSize });
 	    }
 	
 	    return '';
@@ -20483,7 +20526,7 @@
 	
 	  return _react2.default.createElement(
 	    'div',
-	    { className: 'board animated swoop-down-dramatic' },
+	    { className: boardClasses.join(' ') },
 	    displayWinner(),
 	    boardRows
 	  );
@@ -20491,9 +20534,10 @@
 	
 	Board.propTypes = {
 	  board: _react2.default.PropTypes.array.isRequired,
+	  size: _react2.default.PropTypes.number.isRequired,
 	  move: _react2.default.PropTypes.func.isRequired,
-	  reset: _react2.default.PropTypes.func.isRequired,
-	  winner: _react2.default.PropTypes.object
+	  newGame: _react2.default.PropTypes.func.isRequired,
+	  setSize: _react2.default.PropTypes.func.isRequired
 	};
 	
 	module.exports = Board;
@@ -20624,14 +20668,16 @@
 	
 	var Winner = function Winner(_ref) {
 	  var winner = _ref.winner;
-	  var reset = _ref.reset;
+	  var newGame = _ref.newGame;
+	  var size = _ref.size;
+	  var setSize = _ref.setSize;
 	
 	  var display = {};
-	  var isStaleMate = function isStaleMate() {
+	  var isTie = function isTie() {
 	    return winner.player.toUpperCase() === 'TIE';
 	  };
 	
-	  if (isStaleMate()) {
+	  if (isTie()) {
 	    display.header = 'Tie!';
 	    display.body = 'Cat\'s game.';
 	  } else {
@@ -20656,9 +20702,19 @@
 	        display.body
 	      ),
 	      _react2.default.createElement(
-	        'a',
-	        { href: '', className: 'reset', onClick: reset },
-	        'reset'
+	        'p',
+	        { className: 'info' },
+	        'If you would like to set a custom size, you can do so here. If the input is less than 3 or empty a new game with the current size will start.'
+	      ),
+	      _react2.default.createElement('input', { type: 'text', val: size, onChange: setSize }),
+	      _react2.default.createElement(
+	        'footer',
+	        null,
+	        _react2.default.createElement(
+	          'a',
+	          { href: '', className: 'new-game', onClick: newGame },
+	          'new game'
+	        )
 	      )
 	    )
 	  );
@@ -20666,7 +20722,9 @@
 	
 	Winner.propTypes = {
 	  winner: _react2.default.PropTypes.object.isRequired,
-	  reset: _react2.default.PropTypes.func.isRequired
+	  newGame: _react2.default.PropTypes.func.isRequired,
+	  size: _react2.default.PropTypes.number.isRequired,
+	  setSize: _react2.default.PropTypes.func.isRequired
 	};
 	
 	module.exports = Winner;
@@ -20847,13 +20905,13 @@
 	
 	var _board2 = _interopRequireDefault(_board);
 	
-	var _winner = __webpack_require__(201);
+	var _size = __webpack_require__(201);
 	
-	var _winner2 = _interopRequireDefault(_winner);
+	var _size2 = _interopRequireDefault(_size);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var ticTacToe = (0, _redux.combineReducers)({ board: _board2.default, player: _player2.default, winner: _winner2.default });
+	var ticTacToe = (0, _redux.combineReducers)({ board: _board2.default, size: _size2.default, player: _player2.default });
 	
 	var rootReducer = function rootReducer(state, action) {
 	  var newState = void 0;
@@ -21749,6 +21807,14 @@
 	    case 'MOVE':
 	      newState[action.x][action.y] = action.player;
 	      return newState;
+	    case 'NEW_GAME':
+	      if (action.size && action.size > 3) {
+	        newState = new _matrix.Matrix(action.size);
+	      } else {
+	        newState = new _matrix.Matrix();
+	      }
+	
+	      return newState;
 	    case 'INIT':
 	    default:
 	      return state;
@@ -21763,25 +21829,22 @@
 
 	'use strict';
 	
-	var winner = function winner() {
-	  var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	var size = function size() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? 3 : arguments[0];
 	  var action = arguments[1];
 	
 	  var newState = void 0;
 	
 	  switch (action.type) {
-	    case 'WIN':
-	      newState = action.winner;
-	      return newState;
-	    case 'TIE':
-	      newState = { player: 'Tie' };
+	    case 'SET_SIZE':
+	      newState = parseInt(action.size, 10);
 	      return newState;
 	    default:
 	      return state;
 	  }
 	};
 	
-	module.exports = winner;
+	module.exports = size;
 
 /***/ },
 /* 202 */
