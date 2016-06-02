@@ -2,6 +2,7 @@
 [Demo](http://svorach.github.io/react-tac-toe/)
 
 ### How do I get set up? ###
+If you do not have node or npm please visit <https://nodejs.org/> 
 
 If you do not have webpack and webpack-dev-server set up, please run:
 
