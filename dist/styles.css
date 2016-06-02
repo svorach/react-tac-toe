@@ -64,6 +64,7 @@ footer input {
   font-size: inherit;
   line-height: inherit;
   outline: none;
+  padding: 0;
   text-indent: 5%;
   width: 50%; }
 
