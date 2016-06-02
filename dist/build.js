@@ -147,7 +147,7 @@
 	        })),
 	        _react2.default.createElement(
 	          'footer',
-	          null,
+	          { className: 'pin-to-bottom' },
 	          _react2.default.createElement(
 	            'a',
 	            { className: 'reset', href: '', onClick: this.newGame },
@@ -20604,14 +20604,15 @@
 	  var rowIndex = _ref.rowIndex;
 	  var move = _ref.move;
 	
-	  var classList = ['tile', 'animated'];
+	  var tileClasses = ['tile', 'animated'];
 	
-	  classList.push(claim ? 'flip' : '');
+	  tileClasses.push(claim ? 'flip' : '');
+	  tileClasses.push(claim);
 	
 	  var opts = {
 	    disabled: claim !== '',
 	    'data-coords': rowIndex + ',' + index,
-	    className: classList.join(' '),
+	    className: tileClasses.join(' '),
 	    href: '',
 	    onClick: move
 	  };
@@ -20706,10 +20707,10 @@
 	        { className: 'info' },
 	        'If you would like to set a custom size, you can do so here. If the input is less than 3 or empty a new game with the current size will start.'
 	      ),
-	      _react2.default.createElement('input', { type: 'text', val: size, onChange: setSize }),
 	      _react2.default.createElement(
 	        'footer',
 	        null,
+	        _react2.default.createElement('input', { type: 'text', placeholder: 'size', val: size, onChange: setSize }),
 	        _react2.default.createElement(
 	          'a',
 	          { href: '', className: 'new-game', onClick: newGame },

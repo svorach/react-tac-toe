@@ -1,33 +1,34 @@
-.tile {
+@import url(https://fonts.googleapis.com/css?family=Titillium+Web:400,700,300);.tile {
   align-items: center;
   border: none;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
   cursor: pointer;
   display: flex;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.45) 100%);
+  background: rgba(0, 0, 0, 0.5);
   flex: 1;
   justify-content: center;
-  margin: 10px;
+  margin: 1vw;
   outline: none;
   padding: auto;
-  text-align: center;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25); }
+  text-align: center; }
+  .tile.o {
+    color: #0fbdea; }
+  .tile.x {
+    color: #07c9c1; }
+  .tile.flip {
+    background: rgba(0, 0, 0, 0.75); }
   .tile[disabled] {
     cursor: not-allowed; }
-  .tile.flip {
-    background: rgba(255, 255, 255, 0.75);
-    background: linear-gradient(-140deg, #DCAAAA 0%, #BF79B7 50%, #7B68C8 100%);
-    opacity: 0.75; }
 
 .claim {
-  color: rgba(0, 0, 0, 0.75);
   flex: 1;
   font-weight: 300;
   font-size: 12em;
   font-size: 12vh;
-  text-shadow: -1px 1px 1px rgba(0, 0, 0, 0.25);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
   text-transform: uppercase; }
 
-@media (max-width: 800px) {
+@media (max-width: 1024px) {
   .claim {
     font-size: 12vw; } }
 .row {
@@ -38,6 +39,7 @@
   background: rgba(0, 0, 0, 0.75);
   color: #fff;
   height: 100%;
+  overflow-y: auto;
   position: absolute;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.75);
   width: 100%;
@@ -45,40 +47,52 @@
 
 .winner-wrapper {
   padding: 40px; }
+  .winner-wrapper .info {
+    font-size: 2.5vh;
+    line-height: 3.5vh; }
+  .winner-wrapper footer {
+    background: none;
+    font-size: 3vh;
+    line-height: 5vh;
+    margin: 5vh 0; }
 
-.info {
-  font-size: 2.5vh; }
-
-.new-game {
+footer input {
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
   color: #fff;
-  display: inline-block;
-  font-weight: 300;
-  font-size: 2em;
-  font-size: 5vh;
-  text-shadow: -1px 1px 1px rgba(0, 0, 0, 0.25);
-  text-align: center;
-  text-decoration: none; }
-  .new-game:hover {
-    border-bottom: 0.1em solid #fff; }
+  float: left;
+  font-size: inherit;
+  line-height: inherit;
+  outline: none;
+  text-indent: 5%;
+  width: 50%; }
 
-@media (max-width: 800px) {
-  .new-game {
-    font-size: 5vw; }
-  .info {
-    font-size: 2.5vw; } }
+footer .new-game {
+  float: left;
+  font-size: inherit;
+  line-height: inherit;
+  margin: 0;
+  text-align: center;
+  text-decoration: none;
+  width: 50%; }
+
+@media (max-width: 1024px) {
+  .winner-wrapper .info {
+    font-size: 3vw;
+    line-height: 5vw; }
+  .winner-wrapper footer {
+    font-size: 4vw;
+    line-height: 4vw; } }
 .board {
   display: flex;
   flex-direction: column;
-  height: 800px;
-  height: 90vh;
+  height: 80vh;
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 40px;
-  margin-top: 5vh;
+  margin-top: 7.5vh;
   position: relative;
-  width: 800px;
-  width: 90vh; }
+  width: 80vh; }
   .board.large > .row > .tile > .claim {
     font-size: 8vh; }
   .board.huge > .row > .tile > .claim {
@@ -86,8 +100,8 @@
 
 @media (max-width: 800px) {
   .board {
-    height: 90vw;
-    width: 90vw; }
+    height: 80vw;
+    width: 80vw; }
     .board.large > .row > .tile > .claim {
       font-size: 8vw; }
     .board.huge > .row > .tile > .claim {
@@ -152,39 +166,48 @@ html {
   background: linear-gradient(160deg, #0ebfac 0%, #3c7ff5 30%, #5f44e8 75%);
   background-repeat: no-repeat;
   background-size: cover;
-  font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
-  min-height: 100%; }
+  font-family: 'Titillium Web', 'Helvetica Neue', 'Helvetica', sans-serif;
+  min-height: 100%;
+  position: relative; }
 
 h1 {
-  color: #fff;
-  text-shadow: shadow;
+  color: #0fbdea;
   font-weight: 300;
   font-size: 2.4em;
   font-size: 10vh;
-  margin: 0; }
+  margin: 0;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25); }
 
 a {
-  color: #fff;
+  color: #0fbdea;
   font-size: 2.5vh;
   line-height: 5vh;
   text-decoration: none;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25); }
   a:hover {
-    text-decoration: underline; }
+    color: #07c9c1; }
 
 p {
-  font-size: 5vh; }
+  font-size: 5vh;
+  line-height: 7vh; }
 
 footer {
+  background: rgba(0, 0, 0, 0.75);
   text-align: center;
   height: 5vh; }
   footer a {
-    margin-right: 10px; }
+    margin-right: 2vw; }
 
-@media (max-width: 800px) {
+.pin-to-bottom {
+  bottom: 0;
+  position: absolute;
+  width: 100%; }
+
+@media (max-width: 1024px) {
   h1 {
     font-size: 10vw; }
   p {
-    font-size: 5vw; } }
+    font-size: 5vw;
+    line-height: 5.75vw; } }
 
 /*# sourceMappingURL=styles.css.map*/
