@@ -33,18 +33,8 @@ module.exports = {
   },
 
   Matrix(size = 3) {
-    const matrix = [];
+    const matrixArray = () => new Array(size).join(',').split(',');
 
-    for (let rowIndex = 0; rowIndex < size; rowIndex ++) {
-      const row = [];
-
-      for (let colIndex = 0; colIndex < size; colIndex++) {
-        row.push('');
-      }
-
-      matrix.push(row);
-    }
-
-    return matrix;
+    return matrixArray().map((item) => matrixArray());
   },
 };
