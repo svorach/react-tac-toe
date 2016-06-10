@@ -35,6 +35,6 @@ module.exports = {
   Matrix(size = 3) {
     const matrixArray = () => new Array(size).join(',').split(',');
 
-    return matrixArray().map((item) => matrixArray());
+    return matrixArray().map(() => matrixArray());
   },
 };
